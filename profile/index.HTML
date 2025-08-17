@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dark Matrix — ByteHuntersx</title>
+
+  <!-- Meta -->
+  <meta name="description" content="Dark Matrix — Security, Cryptography & Automation." />
+  <meta property="og:title" content="Dark Matrix — ByteHuntersx" />
+  <meta property="og:description" content="Security • Cryptography • Automation" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#00ff88" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #0f141b;
+      --text: #d7ffec;
+      --muted: #7bd9b7;
+      --accent: #00ff88;
+      --grid: rgba(0, 255, 136, 0.08);
+      --link: #7cffc8;
+      --shadow: 0 0 30px rgba(0,255,136,.15);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,255,136,0.06) 100%) no-repeat,
+        radial-gradient(1000px 600px at 80% -10%, rgba(0,255,136,0.10), transparent 60%) no-repeat,
+        radial-gradient(900px 600px at -10% 120%, rgba(0,255,136,0.10), transparent 60%) no-repeat,
+        linear-gradient(0deg, var(--bg), var(--bg));
+      background-attachment: fixed;
+      line-height: 1.65;
+    }
+
+    .grid {
+      position: fixed; inset: 0; pointer-events: none; opacity: .35;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 24px 24px, 24px 24px;
+      mask-image: radial-gradient(circle at 60% 0%, black, transparent 70%);
+    }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 28px 20px 80px; }
+
+    header {
+      display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+      padding: 14px 16px; border: 1px solid #163626; border-radius: 12px;
+      background: linear-gradient(180deg, #0d1319, #0a1015);
+      box-shadow: var(--shadow);
+    }
+    .avatar {
+      width: 56px; height: 56px; border-radius: 12px; background: #0c1319;
+      border: 1px solid #153c2a; display: grid; place-items: center;
+      font-weight: 700; color: var(--accent);
+    }
+    .title { display: grid; gap: 4px; }
+    .title h1 { margin: 0; font-size: 22px; letter-spacing: .6px; }
+    .title p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .pill {
+      margin-left: auto; padding: 8px 12px; border-radius: 999px;
+      border: 1px solid #164b34; color: var(--accent); font-size: 12px;
+      background: rgba(0,255,136,0.05);
+    }
+
+    .hero {
+      margin-top: 26px; padding: 24px; border-radius: 14px;
+      border: 1px solid #163626; background: linear-gradient(180deg, #0c1218, #0a1015);
+      box-shadow: var(--shadow);
+    }
+    .hero h2 { margin: 0 0 10px; font-size: 26px; }
+    .hero p { margin: 0; color: var(--muted); }
+    .mono { color: var(--accent); }
+
+    .cards {
+      display: grid; gap: 16px; margin-top: 26px;
+      grid-template-columns: repeat( auto-fit, minmax(260px, 1fr) );
+    }
+    .card {
+      border: 1px solid #163626; border-radius: 12px; padding: 18px;
+      background: #0c1218; transition: transform .15s ease, border-color .15s ease;
+    }
+    .card:hover { transform: translateY(-2px); border-color: #1f6b4d; }
+    .card h3 { margin: 0 0 8px; font-size: 16px; }
+    .card p { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+    .tag { display: inline-block; margin-right: 6px; margin-bottom: 6px;
+      padding: 4px 8px; font-size: 12px; border: 1px solid #1a533a; border-radius: 999px; color: #b9ffe3;
+      background: rgba(0,255,136,.06);
+    }
+
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .footer {
+      margin-top: 28px; padding: 16px; text-align: center; color: var(--muted);
+      border-top: 1px dashed #174f37;
+    }
+
+    /* Small flair cursor */
+    .cursor {
+      position: fixed; width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); mix-blend-mode: screen; pointer-events: none;
+      opacity: .6; transform: translate(-50%,-50%); filter: blur(2px);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #eef7f3; --panel: #ffffff; --text: #0d2b1f; --muted: #2a6b52;
+        --accent: #00a862; --link: #007a4a; --grid: rgba(0, 168, 98, .08);
+      }
+      .card, .hero, header { background: #ffffff; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+
+  <div class="container">
+    <header>
+      <div class="avatar">DM</div>
+      <div class="title">
+        <h1>Dark Matrix <span style="opacity:.6">/</span> <span class="mono">ByteHuntersx</span></h1>
+        <p>Security • Cryptography • Automation — <span class="mono">"Between 0 & 1"</span></p>
+      </div>
+      <span class="pill">v1.0 • live</span>
+    </header>
+
+    <section class="hero">
+      <h2>👾 Hello, operator.</h2>
+      <p>
+        I build <strong>secure tooling</strong>, explore <strong>crypto systems</strong>, and automate the boring stuff.
+        Clean code, quiet logs, sharp edges.
+      </p>
+    </section>
+
+    <section class="cards" aria-label="Featured Repositories">
+      <article class="card">
+        <h3>Matrix-Scripts</h3>
+        <p>Small utilities for ops & security. Minimal dependencies. Maximum signal.</p>
+        <div>
+          <span class="tag">Python</span>
+          <span class="tag">Bash</span>
+          <span class="tag">CLI</span>
+        </div>
+        <p><a href="https://github.com/ByteHuntersx/Matrix-Scripts">/Matrix-Scripts</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Cipher-Lab</h3>
+        <p>Playground for classical & modern cryptography. Ciphers, analysis, tests.</p>
+        <div>
+          <span class="tag">Crypto</span>
+          <s
